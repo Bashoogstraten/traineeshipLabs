@@ -1,6 +1,6 @@
 public class TypesOefening {
 
-    public void huiswerkOpdrachtDrie(){
+    public static void huiswerkOpdrachtDrie(){
 
         int z = 2;
         int x = z++;
@@ -15,7 +15,9 @@ public class TypesOefening {
         int j = i < 3 ? i++ + ++i : ++i >>> 1;
         System.out.println("C: " + j); // 3 + 1 = 4, maar er wordt 1 bit naar rechts geschoven, dus is de uitkomst 2
 
-        //byte b1 = 0b100;
+        byte b1 = 0b1010;
+        byte b2 = 0b100;
+        System.out.println(b1+b2);
 
     }
 }
