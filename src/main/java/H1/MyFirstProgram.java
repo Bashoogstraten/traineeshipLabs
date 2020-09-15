@@ -1,4 +1,4 @@
-package a.b;
+package H1;
 
 import java.util.Scanner;
 
