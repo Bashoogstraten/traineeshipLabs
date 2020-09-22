@@ -5,14 +5,33 @@ public class BankAccount {
     private int number;
     private double balance;
     private double interestRate;
+    private Person person;
     //private double interestAmount = (balance * interestRate);
 
     public static final int MIN_BALANCE = 0;
 
+    public BankAccount() {
+        this(0, 0, 1.05, new Person());
+    }
+
+    public BankAccount(int number) {
+        this(number, 0, 1.05, new Person());
+    }
+
+    public BankAccount(int number, double balance) {
+        this(number, balance, 1.05, new Person());
+
+    }
+
     public BankAccount(int number, double balance, double interestRate) {
+        this(number, balance, interestRate, new Person());
+    }
+
+    public BankAccount(int number, double balance, double interestRate, Person person) {
         this.number = number;
         this.balance = balance;
         this.interestRate = interestRate;
+        this.person = person;
     }
 
     public double getBalance() {
@@ -43,4 +62,8 @@ public class BankAccount {
         return this.balance;
     }
 
+    @Override
+    public String toString() {
+        return "Account " + this.number + " has balance " + this.balance;
+    }
 }

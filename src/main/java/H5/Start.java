@@ -4,8 +4,9 @@ public class Start {
     public static void main(String[] args) {
 
         Lab lab = new Lab();
-        Fibo fibo = new Fibo();
 
+
+        /*
         int antwoordxyz = lab.greatest(8,9);
         System.out.println(antwoordxyz);
 
@@ -20,9 +21,16 @@ public class Start {
 
         String naam = "Bas";
         lab.testMethode(naam);
-        System.out.println(naam);
+        System.out.println(naam);*/
 
-        fibo.run(6);
+        Fibo fibo = new Fibo();
+
+        //fibo.runFibo(6);
+
+        //fibo.runFibo(4,6);
+
+        fibo.runFibo(1,1,6);
+
 
     }
 
