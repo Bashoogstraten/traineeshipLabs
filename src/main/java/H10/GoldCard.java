@@ -30,7 +30,7 @@ public class GoldCard extends Card {
     }
 
     public void setDiscount(int percent) throws ArgumentOutOfRangeException {
-        if(percent > 0 && percent <= MAX_DISCOUNT){
+        if (percent > 0 && percent <= MAX_DISCOUNT) {
             this.discount = percent;
         } else {
             throw new ArgumentOutOfRangeException();
@@ -38,14 +38,12 @@ public class GoldCard extends Card {
     }
 
     @Override
-    boolean pay(double amount){
+    boolean pay(double amount) {
         double discountAmount = (amount * (1 - (this.discount / 100.0)));
-        if((super.creditBalance - discountAmount) >= MIN_BALANCE){
-            super.creditBalance -= discountAmount;
-            return true;
-        } else {
-            return false;
-        }
+
+        super.creditBalance -= discountAmount;
+        return true;
+
     }
 
 }

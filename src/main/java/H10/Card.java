@@ -29,6 +29,7 @@ public class Card {
     }
 
     public double getCreditBalance(){
+
         return this.creditBalance;
     }
 
