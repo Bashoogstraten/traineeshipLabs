@@ -1,4 +1,8 @@
-package H11;
+package H14;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Objects;
 
 @MyAnnotation
 public class Person extends Human {
@@ -7,7 +11,7 @@ public class Person extends Human {
     private int age;
     private Gender gender;
 
-    String[] historyArray = new String[10];
+    ArrayList<String> historyArray = new ArrayList<>();
     private int counter;
 
     private static final int MIN_AGE = 0;
@@ -30,18 +34,13 @@ public class Person extends Human {
 
     @MyAnnotation2
     public void addHistory(String descr) {
-        if (this.counter <= 9) {
-            this.historyArray[this.counter] = descr;
-            this.counter++;
-        } else {
-            throw new ArrayIndexOutOfBoundsException();
-        }
+        historyArray.add(descr);
 
     }
 
     @MyAnnotation2
-    public void printHistory(String[] print) {
-        for (String n : print) {
+    public void printHistory(ArrayList print) {
+        for (Object n : print) {
 
             System.out.print(n + " ");
 
@@ -130,6 +129,20 @@ public class Person extends Human {
         return this.firstName + ", age: " + this.age + ", gender: " + this.gender;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return age == person.age &&
+                Objects.equals(firstName, person.firstName) &&
+                gender == person.gender;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, age, gender);
+    }
 }
 
 

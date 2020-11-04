@@ -26,7 +26,7 @@ public class Person {
         this.gender = gender;
 
     }
-
+    @Override
     public String toString(){
         return (this.firstName + " (" + this.age + ") is " + this.gender + ".");
 
@@ -41,6 +41,7 @@ public class Person {
         }
     }
 
+    @Override
     public int hashCode(){
         return this.age * this.firstName.hashCode() * this.gender.hashCode();
     }

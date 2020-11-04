@@ -1,4 +1,4 @@
-package H11;
+package H14;
 
 public class Start {
     public static void main(String[] args) throws Throwable {
@@ -8,12 +8,12 @@ public class Start {
             Person bas = new Person("Bas", 25, Gender.MALE);
 //            System.out.println(bas.getGreet());
 //
-//            bas.addHistory("Born in December 1994.");
-//            bas.addHistory("Lived in Elst in recent years.");
-//            bas.addHistory("Studying to become Java developer now.");
-//            bas.addHistory("Got a platinum trophy on AC:Odyssey.");
-//            bas.addHistory("Got his first Fall Guys win.");
-//            bas.printHistory(bas.historyArray);
+            bas.addHistory("Born in December 1994.");
+            bas.addHistory("Lived in Elst in recent years.");
+            bas.addHistory("Studying to become Java developer now.");
+            bas.addHistory("Got a platinum trophy on AC:Odyssey.");
+            bas.addHistory("Got his first Fall Guys win.");
+            bas.printHistory(bas.historyArray);
 //
 //            Human subhuman = test.createSubHuman();
 //            System.out.println(subhuman.getGreet());
@@ -46,12 +46,12 @@ public class Start {
 //                }
 //            }
 
-            House<Person> hp;
-            //House<String>hs;     not within bound, because <T extends Human>
-
-            hp = new House<>();
-            hp.setInhoud(new Person("Bas", 25, Gender.MALE));
-            System.out.println(hp.toString());
+//            House<Person> hp;
+//            //House<String>hs;     not within bound, because <T extends Human>
+//
+//            hp = new House<>();
+//            hp.setInhoud(new Person("Bas", 25, Gender.MALE));
+//            System.out.println(hp.toString());
 
 
 
