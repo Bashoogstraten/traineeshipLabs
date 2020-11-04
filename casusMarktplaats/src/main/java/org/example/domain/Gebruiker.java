@@ -42,6 +42,10 @@ public class Gebruiker extends AbstracteGebruiker {
         return this.gebruikersnaam;
     }
 
+    public String getWachtwoord() {
+        return wachtwoord;
+    }
+
     public List<Advertentie> getAdvertenties() {
         return advertenties;
     }

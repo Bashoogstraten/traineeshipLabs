@@ -12,7 +12,7 @@ import static org.example.util.AdvertentieStatus.BESCHIKBAAR;
 
 public class AdvertentieMenu {
 
-    public void start(Gebruiker abc) {
+    public void start(Gebruiker ingelogdeGebruiker) {
         while (true) {
             System.out.println("********* " + getClass().getSimpleName() + " *********");
             System.out.println("Wat wilt u doen?");
@@ -22,7 +22,7 @@ public class AdvertentieMenu {
 
             switch (readLine()) {
                 case "1":
-                    aanmakenAdvertentie(abc);
+                    aanmakenAdvertentie(ingelogdeGebruiker);
                     break;
                 case "2":
                     break;
@@ -34,7 +34,7 @@ public class AdvertentieMenu {
         }
     }
 
-    public void aanmakenAdvertentie(Gebruiker abc) throws IllegalArgumentException {
+    public void aanmakenAdvertentie(Gebruiker ingelogdeGebruiker) throws IllegalArgumentException {
         try {
             Scanner scanner = new Scanner(System.in);
 
@@ -45,10 +45,10 @@ public class AdvertentieMenu {
             System.out.println("Geef een prijs voor uw advertentie: ");
             BigDecimal prijs = scanner.nextBigDecimal();
 
-            Advertentie nieuw = new Advertentie(titel, omschrijving, abc, prijs, BESCHIKBAAR);
-            abc.voegBestaandeAdvertentieToe(nieuw);
+            Advertentie nieuw = new Advertentie(titel, omschrijving, ingelogdeGebruiker, prijs, BESCHIKBAAR);
+            ingelogdeGebruiker.voegBestaandeAdvertentieToe(nieuw);
 
-            gebDao.update(abc);
+            gebDao.update(ingelogdeGebruiker);
 
         } catch (IllegalArgumentException e) {
             e.printStackTrace();

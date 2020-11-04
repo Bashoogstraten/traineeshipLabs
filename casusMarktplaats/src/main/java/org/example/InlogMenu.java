@@ -4,10 +4,9 @@ import org.example.domain.Gebruiker;
 
 import javax.persistence.NoResultException;
 
-import static org.example.Marktplaats.gebDao;
 import static org.example.Marktplaats.readLine;
 
-public class Hoofdmenu {
+public class InlogMenu {
 
     public void start() {
         while (true) {
@@ -24,36 +23,11 @@ public class Hoofdmenu {
             try {
                 switch (readLine()) {
                     case "1":
+                        Gebruiker ingelogdeGebruiker = new InloggenGebruiker().start();
+                        new HoofdMenu().start(ingelogdeGebruiker);
                         break;
                     case "2":
                         new AanmakenGebruiker().start();
-                        System.out.println("Je account is succesvol geregistreerd.");
-                        break;
-                    default:
-                        System.out.println("Ongeldige keuze; probeer opnieuw.");
-                        break;
-                }
-
-                System.out.println("-------------------------------------------");
-                System.out.println("Voer om in te loggen uw gebruikersnaam in: ");
-                System.out.println("-------------------------------------------");
-                String bekendenaam = readLine();
-                Gebruiker bekend = gebDao.getMetGebruikersnaam(bekendenaam);
-                System.out.println("-------------------------------------------------");
-                System.out.println("Welkom terug " + bekend.getGebruikersnaam() + ". ");
-                System.out.println("-------------------------------------------------");
-                System.out.println("Waar wilt u naartoe navigeren?");
-                System.out.println("-------------------------------------------------");
-                System.out.println("(1) [Advertenties]");
-                System.out.println("-------------------------------------------------");
-
-                switch (readLine()) {
-                    case "1":
-                        new AdvertentieMenu().start(bekend);
-                        break;
-                    case "2":
-                        new AanmakenGebruiker().start();
-                        System.out.println("Je account is succesvol geregistreerd.");
                         break;
                     default:
                         System.out.println("Ongeldige keuze; probeer opnieuw.");

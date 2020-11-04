@@ -14,13 +14,20 @@ public class AanmakenGebruiker {
         try {
             Scanner scanner = new Scanner(System.in);
 
+            System.out.println("---------------------------------------------------------------------");
             System.out.println("Kies een gebruikersnaam: ");
+            System.out.println("---------------------------------------------------------------------");
             String gebruikersnaam = scanner.nextLine();
+            System.out.println("---------------------------------------------------------------------");
             System.out.println("Kies een wachtwoord: ");
+            System.out.println("---------------------------------------------------------------------");
             String wachtwoord = scanner.nextLine();
 
             Gebruiker geb = new Gebruiker(gebruikersnaam, wachtwoord, ACTIEF);
             gebDao.save(geb);
+            System.out.println("---------------------------------------------------------------------");
+            System.out.println("Je account is succesvol geregistreerd.");
+
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }

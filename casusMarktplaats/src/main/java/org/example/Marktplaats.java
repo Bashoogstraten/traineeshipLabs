@@ -3,8 +3,6 @@ package org.example;
 import org.example.domain.Advertentie;
 import org.example.domain.Gebruiker;
 import org.example.util.GebruikerDao;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -24,7 +22,7 @@ public class Marktplaats {
     public static void main(String[] args) {
 
         new Voorprogrammeren().start();
-        new Hoofdmenu().start();
+        new InlogMenu().start();
 
 
 //        start.aanmakenAdvertentie(start.f);
