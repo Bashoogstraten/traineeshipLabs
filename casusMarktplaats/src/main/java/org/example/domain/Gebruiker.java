@@ -23,6 +23,9 @@ public class Gebruiker extends AbstracteGebruiker {
     @OneToMany(mappedBy = "aanbieder", cascade = {PERSIST, MERGE})
     private List<Advertentie> advertenties = new LinkedList<>();
 
+
+//    private List<Advertentie> winkelwagen = new LinkedList<>();
+
     public Gebruiker() {
     }
 
@@ -39,10 +42,12 @@ public class Gebruiker extends AbstracteGebruiker {
     }
 
     public String getGebruikersnaam(){
+
         return this.gebruikersnaam;
     }
 
     public String getWachtwoord() {
+
         return wachtwoord;
     }
 

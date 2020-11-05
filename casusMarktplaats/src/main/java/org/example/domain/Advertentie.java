@@ -1,5 +1,6 @@
 package org.example.domain;
 
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import org.example.util.AdvertentieStatus;
 import org.example.util.GebruikerStatus;
 
@@ -37,6 +38,24 @@ public class Advertentie {
 
     public long getId() {
         return id;
+    }
+
+    public String getTitel() { return this.titel; }
+
+    public String getOmschrijving() { return this.omschrijving; }
+
+    public BigDecimal getPrijs() { return this.prijs; }
+
+    public void setTitel(String titel) {
+        this.titel = titel;
+    }
+
+    public void setOmschrijving(String omschrijving) {
+        this.omschrijving = omschrijving;
+    }
+
+    public void setPrijs(BigDecimal prijs) {
+        this.prijs = prijs;
     }
 
     @Override

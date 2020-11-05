@@ -5,6 +5,7 @@ import org.example.domain.Gebruiker;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import java.math.BigDecimal;
 import java.util.List;
 
 public class AdvertentieDao {
@@ -33,9 +34,8 @@ public class AdvertentieDao {
         em.clear();
     }
 
-    public void delete(long id) {
+    public void delete(Advertentie e) {
         em.getTransaction().begin();
-        Advertentie e = get(id);
         em.remove(e);
         em.getTransaction().commit();
     }
@@ -45,6 +45,36 @@ public class AdvertentieDao {
         Advertentie merged = em.merge(e);
         em.getTransaction().commit();
         return merged;
+    }
+
+    public Advertentie updateTitel(long id, String titel) {
+        Advertentie e = get(id);
+        if (e != null) {
+            em.getTransaction().begin();
+            e.setTitel(titel);
+            em.getTransaction().commit();
+        }
+        return e;
+    }
+
+    public Advertentie updateOmschrijving(long id, String omschrijving) {
+        Advertentie e = get(id);
+        if (e != null) {
+            em.getTransaction().begin();
+            e.setOmschrijving(omschrijving);
+            em.getTransaction().commit();
+        }
+        return e;
+    }
+
+    public Advertentie updatePrijs(long id, BigDecimal prijs) {
+        Advertentie e = get(id);
+        if (e != null) {
+            em.getTransaction().begin();
+            e.setPrijs(prijs);
+            em.getTransaction().commit();
+        }
+        return e;
     }
 
     public Advertentie getMetAdvertentie(Gebruiker e){
@@ -62,4 +92,19 @@ public class AdvertentieDao {
         TypedQuery<Advertentie> query = em.createQuery("SELECT e FROM Advertentie e ", Advertentie.class);
         return query.getResultList();
     }
+
+    public List<Advertentie> findAllVoorGebruiker(Gebruiker abc) {
+        TypedQuery<Advertentie> query = em.createQuery("SELECT e FROM Advertentie e WHERE e.aanbieder = :gb", Advertentie.class);
+        query.setParameter("gb", abc);
+        return query.getResultList();
+    }
+
+    public List<Advertentie> findByZoekterm(Gebruiker ingelogdegebruiker, String zoekterm, AdvertentieStatus status) {
+        TypedQuery<Advertentie> query = em.createQuery("select e from Advertentie e WHERE e.aanbieder <> :ingelogdegebruiker AND e.titel LIKE :firstarg AND e.advertentieStatus = :status", Advertentie.class);
+        query.setParameter("ingelogdegebruiker", ingelogdegebruiker);
+        query.setParameter("firstarg", "%" + zoekterm + "%");
+        query.setParameter("status", status);
+        return query.getResultList();
+    }
+
 }

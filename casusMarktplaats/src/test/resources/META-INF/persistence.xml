@@ -7,7 +7,8 @@
 
     <persistence-unit name="H2">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider> <!--kan weg? -->
-        <class>org.example.domain.Employee</class>
+        <class>org.example.domain.Gebruiker</class>
+        <class>org.example.domain.Advertentie</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/> <!--kan weg? -->
             <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test"/>

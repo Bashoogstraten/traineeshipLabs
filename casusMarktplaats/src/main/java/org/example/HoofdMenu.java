@@ -18,6 +18,8 @@ public class HoofdMenu {
             System.out.println("Waar wilt u naartoe navigeren?");
             System.out.println("---------------------------------------------------------------------");
             System.out.println("(1) [Advertenties]");
+            System.out.println("(2) [Winkelwagen]");
+            System.out.println("(3) [Uitloggen]");
             System.out.println("---------------------------------------------------------------------");
 
             try {
@@ -26,8 +28,9 @@ public class HoofdMenu {
                         new AdvertentieMenu().start(ingelogdeGebruiker);
                         break;
                     case "2":
-                        new AanmakenGebruiker().start();
-                        break;
+
+                    case "3":
+                        return;
                     default:
                         System.out.println("Ongeldige keuze; probeer opnieuw.");
                         break;
