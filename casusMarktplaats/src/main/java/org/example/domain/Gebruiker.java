@@ -3,13 +3,15 @@ package org.example.domain;
 import org.example.util.AdvertentieStatus;
 import org.example.util.GebruikerStatus;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.OneToMany;
 import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
 
-import static javax.persistence.CascadeType.MERGE;
-import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.CascadeType.*;
 
 @Entity
 public class Gebruiker extends AbstracteGebruiker {
@@ -20,9 +22,8 @@ public class Gebruiker extends AbstracteGebruiker {
     @Enumerated(value = EnumType.STRING)
     private GebruikerStatus status;
 
-    @OneToMany(mappedBy = "aanbieder", cascade = {PERSIST, MERGE})
+    @OneToMany(mappedBy = "aanbieder", cascade = {PERSIST, MERGE, REMOVE})
     private List<Advertentie> advertenties = new LinkedList<>();
-
 
 //    private List<Advertentie> winkelwagen = new LinkedList<>();
 
@@ -41,7 +42,7 @@ public class Gebruiker extends AbstracteGebruiker {
         return id;
     }
 
-    public String getGebruikersnaam(){
+    public String getGebruikersnaam() {
 
         return this.gebruikersnaam;
     }
@@ -62,9 +63,13 @@ public class Gebruiker extends AbstracteGebruiker {
 
     }
 
-    public void voegBestaandeAdvertentieToe(Advertentie a){
+    public void voegBestaandeAdvertentieToe(Advertentie a) {
         this.advertenties.add(a);
     }
 
+    public void verwijderAdvertentie(Advertentie a) {
+        this.advertenties.remove(a);
+        a.setAanbieder(null);
+    }
 
 }

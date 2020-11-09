@@ -1,15 +1,18 @@
 package org.example;
 
 import org.example.domain.Gebruiker;
+import org.example.util.GebruikerDao;
 
+import javax.persistence.EntityManager;
 import java.math.BigDecimal;
 
-import static org.example.Marktplaats.gebDao;
 import static org.example.util.GebruikerStatus.ACTIEF;
 
 public class Voorprogrammeren {
 
-    public void start(){
+    public static void start(EntityManager em) {
+
+        GebruikerDao gebDao = new GebruikerDao(em);
 
         Gebruiker e = new Gebruiker("pietje123", "wachtwoord", ACTIEF);
         Gebruiker f = new Gebruiker("TheMasterSeller", "0000", ACTIEF);
@@ -37,5 +40,9 @@ public class Voorprogrammeren {
         gebDao.update(g);
         gebDao.update(h);
 
+    }
+
+    public static void start() {
+        start(Marktplaats.em);
     }
 }

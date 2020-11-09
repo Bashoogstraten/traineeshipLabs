@@ -8,10 +8,10 @@ import org.junit.jupiter.api.Test;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
-
 import java.math.BigDecimal;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AdvertentieDaoTest {
 
@@ -31,6 +31,21 @@ class AdvertentieDaoTest {
         //then
         assertEquals(2, id);
 
+    }
+
+    @Test
+    void remove() {
+        //if
+        Gebruiker e = new Gebruiker("gozer", "wachtwoord", GebruikerStatus.ACTIEF);
+        gebDao.save(e);
+        Advertentie a = new Advertentie("test", "test", e, new BigDecimal("0"), AdvertentieStatus.BESCHIKBAAR);
+        adDao.save(a);
+        int before = adDao.findAll().size();
+        //when
+        adDao.delete(a);
+        int after = adDao.findAll().size();
+        //then
+        assertTrue(after == before - 1);
     }
 
     @Test

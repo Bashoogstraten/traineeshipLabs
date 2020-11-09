@@ -23,7 +23,11 @@
     <Loggers>
         <!-- name should be a package to enable logging from those packages-->
         <Logger name="org.example" additivity="true">
-            <appender-ref ref="fileLogger" level="all"/>
+            <appender-ref ref="fileLogger" level="debug"/>
+        </Logger>
+
+        <Logger name="org.hibernate.event.internal.DefaultPersistEventListener" level="trace">
+
         </Logger>
         <Root level="debug">
             <AppenderRef ref="console"/>

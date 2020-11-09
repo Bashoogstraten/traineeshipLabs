@@ -68,4 +68,8 @@ public class Advertentie {
                 ", advertentieStatus= " + advertentieStatus +
                 '}';
     }
+
+    public void setAanbieder(Gebruiker aanbieder) {
+        this.aanbieder = aanbieder;
+    }
 }
