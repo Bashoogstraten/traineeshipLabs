@@ -1,6 +1,8 @@
-package org.example;
+package org.example.menus;
 
+import org.example.domain.Advertentie;
 import org.example.domain.Gebruiker;
+import org.example.util.AdvertentieStatus;
 
 import java.math.BigDecimal;
 
@@ -9,7 +11,7 @@ import static org.example.util.GebruikerStatus.ACTIEF;
 
 public class Voorprogrammeren {
 
-    public void start(){
+    public void start() {
 
         Gebruiker e = new Gebruiker("pietje123", "wachtwoord", ACTIEF);
         Gebruiker f = new Gebruiker("TheMasterSeller", "0000", ACTIEF);
@@ -36,6 +38,12 @@ public class Voorprogrammeren {
         gebDao.update(f);
         gebDao.update(g);
         gebDao.update(h);
+
+//        Advertentie a = new Advertentie("Test", "Test", f, new BigDecimal("10"), AdvertentieStatus.BESCHIKBAAR);
+//        gebDao.update(f);
+//
+//        gebDao.voegToeAanWinkelwagen(a, e);
+//        gebDao.update(e);
 
     }
 }

@@ -1,11 +1,11 @@
 package org.example.domain;
 
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import org.example.util.AdvertentieStatus;
-import org.example.util.GebruikerStatus;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+
+import static org.example.Marktplaats.gebDao;
 
 @Entity
 public class Advertentie {
@@ -20,6 +20,9 @@ public class Advertentie {
 
     @ManyToOne
     private Gebruiker aanbieder;
+
+    @ManyToOne
+    private Gebruiker koper;
 
     @Enumerated(value = EnumType.STRING)
     private AdvertentieStatus advertentieStatus;
@@ -40,11 +43,25 @@ public class Advertentie {
         return id;
     }
 
-    public String getTitel() { return this.titel; }
+    public String getTitel() {
+        return this.titel;
+    }
 
-    public String getOmschrijving() { return this.omschrijving; }
+    public String getOmschrijving() {
+        return this.omschrijving;
+    }
 
-    public BigDecimal getPrijs() { return this.prijs; }
+    public BigDecimal getPrijs() {
+        return this.prijs;
+    }
+
+    public AdvertentieStatus getAdvertentieStatus() {
+        return this.advertentieStatus;
+    }
+
+    public Gebruiker getAanbieder() {
+        return this.aanbieder;
+    }
 
     public void setTitel(String titel) {
         this.titel = titel;
@@ -56,6 +73,20 @@ public class Advertentie {
 
     public void setPrijs(BigDecimal prijs) {
         this.prijs = prijs;
+    }
+
+    public void setAdvertentieStatus(AdvertentieStatus status) {
+        this.advertentieStatus = status;
+    }
+
+    public void setKoper(Gebruiker koper) {
+        this.koper = koper;
+    }
+
+    public void verwijderAdvertentieUitWinkelwagen(Gebruiker koper) {
+        this.setAdvertentieStatus(AdvertentieStatus.VERKOCHT);
+        gebDao.verwijderUitWinkelwagen(this,koper);
+        gebDao.update(koper);
     }
 
     @Override

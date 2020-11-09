@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.menus.InlogMenu;
+import org.example.menus.Voorprogrammeren;
 import org.example.util.AdvertentieDao;
 import org.example.util.GebruikerDao;
 
@@ -26,7 +28,6 @@ public class Marktplaats {
     public static String readLine() {
         return scanner.nextLine();
     }
-    public static long readLong() { return scanner.nextLong(); }
 
 //    private void log(Object o) {
 //        log.debug(o.toString());

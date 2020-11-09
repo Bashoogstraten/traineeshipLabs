@@ -1,8 +1,7 @@
-package org.example;
+package org.example.menus;
 
 import org.example.domain.Advertentie;
 import org.example.domain.Gebruiker;
-import org.example.util.AdvertentieStatus;
 
 import java.math.BigDecimal;
 import java.util.Scanner;

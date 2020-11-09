@@ -1,4 +1,4 @@
-package org.example;
+package org.example.menus;
 
 import org.example.domain.Gebruiker;
 
@@ -6,29 +6,31 @@ import javax.persistence.NoResultException;
 
 import static org.example.Marktplaats.readLine;
 
-public class InlogMenu {
+public class HoofdMenu {
 
-    public void start() {
+    public void start(Gebruiker ingelogdeGebruiker) {
         while (true) {
 
             System.out.println("---------------------------------------------------------------------");
-            System.out.println("Welkom op ReCyclist, het platform voor 2ehands fietsen en accesoires!");
+            System.out.println("Welkom terug " + ingelogdeGebruiker.getGebruikersnaam() + ". ");
             System.out.println("---------------------------------------------------------------------");
-            System.out.println("Wat wil je doen?");
+            System.out.println("Waar wilt u naartoe navigeren?");
             System.out.println("---------------------------------------------------------------------");
-            System.out.println("(1) [Inloggen] ");
-            System.out.println("(2) [Account aanmaken] ");
+            System.out.println("(1) [Advertenties]");
+            System.out.println("(2) [Winkelwagen]");
+            System.out.println("(3) [Uitloggen]");
             System.out.println("---------------------------------------------------------------------");
 
             try {
                 switch (readLine()) {
                     case "1":
-                        Gebruiker ingelogdeGebruiker = new InloggenGebruiker().start();
-                        new HoofdMenu().start(ingelogdeGebruiker);
+                        new AdvertentieMenu().start(ingelogdeGebruiker);
                         break;
                     case "2":
-                        new AanmakenGebruiker().start();
+                        new WinkelwagenMenu().start(ingelogdeGebruiker);
                         break;
+                    case "3":
+                        return;
                     default:
                         System.out.println("Ongeldige keuze; probeer opnieuw.");
                         break;

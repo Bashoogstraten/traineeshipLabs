@@ -1,36 +1,34 @@
-package org.example;
+package org.example.menus;
 
 import org.example.domain.Gebruiker;
 
 import javax.persistence.NoResultException;
 
-import static org.example.Marktplaats.gebDao;
 import static org.example.Marktplaats.readLine;
 
-public class HoofdMenu {
+public class InlogMenu {
 
-    public void start(Gebruiker ingelogdeGebruiker) {
+    public void start() {
         while (true) {
 
             System.out.println("---------------------------------------------------------------------");
-            System.out.println("Welkom terug " + ingelogdeGebruiker.getGebruikersnaam() + ". ");
+            System.out.println("Welkom op ReCyclist, het platform voor 2ehands fietsen en accesoires!");
             System.out.println("---------------------------------------------------------------------");
-            System.out.println("Waar wilt u naartoe navigeren?");
+            System.out.println("Wat wil je doen?");
             System.out.println("---------------------------------------------------------------------");
-            System.out.println("(1) [Advertenties]");
-            System.out.println("(2) [Winkelwagen]");
-            System.out.println("(3) [Uitloggen]");
+            System.out.println("(1) [Inloggen] ");
+            System.out.println("(2) [Account aanmaken] ");
             System.out.println("---------------------------------------------------------------------");
 
             try {
                 switch (readLine()) {
                     case "1":
-                        new AdvertentieMenu().start(ingelogdeGebruiker);
+                        Gebruiker ingelogdeGebruiker = new InloggenGebruiker().start();
+                        new HoofdMenu().start(ingelogdeGebruiker);
                         break;
                     case "2":
-
-                    case "3":
-                        return;
+                        new AanmakenGebruiker().start();
+                        break;
                     default:
                         System.out.println("Ongeldige keuze; probeer opnieuw.");
                         break;
@@ -39,6 +37,7 @@ public class HoofdMenu {
             } catch (NumberFormatException e) {
                 System.out.println("Dit is ongeldige invoer. Probeer het opnieuw.");
             } catch (NoResultException e) {
+                System.out.println("---------------------------------------------------------------------");
                 System.out.println("Dit is geen geregistreerde gebruikersnaam. Probeer het opnieuw.");
             } catch (RuntimeException t) {
                 System.out.println("Er ging iets mis... Probeer het opnieuw. ");

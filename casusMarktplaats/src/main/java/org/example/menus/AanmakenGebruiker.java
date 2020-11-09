@@ -1,7 +1,6 @@
-package org.example;
+package org.example.menus;
 
 import org.example.domain.Gebruiker;
-import org.example.util.GebruikerStatus;
 
 import java.util.Scanner;
 

@@ -8,8 +8,7 @@ import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
 
-import static javax.persistence.CascadeType.MERGE;
-import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.CascadeType.*;
 
 @Entity
 public class Gebruiker extends AbstracteGebruiker {
@@ -20,11 +19,11 @@ public class Gebruiker extends AbstracteGebruiker {
     @Enumerated(value = EnumType.STRING)
     private GebruikerStatus status;
 
-    @OneToMany(mappedBy = "aanbieder", cascade = {PERSIST, MERGE})
+    @OneToMany(mappedBy = "aanbieder", cascade = {PERSIST, MERGE, REMOVE})
     private List<Advertentie> advertenties = new LinkedList<>();
 
-
-//    private List<Advertentie> winkelwagen = new LinkedList<>();
+    @OneToMany(mappedBy = "koper", cascade = {PERSIST, MERGE, REMOVE})
+    private List<Advertentie> winkelwagen = new LinkedList<>();
 
     public Gebruiker() {
     }
@@ -36,35 +35,43 @@ public class Gebruiker extends AbstracteGebruiker {
         this.status = status;
     }
 
-    public long getId() {
-
-        return id;
-    }
-
-    public String getGebruikersnaam(){
+    public String getGebruikersnaam() {
 
         return this.gebruikersnaam;
     }
 
     public String getWachtwoord() {
 
-        return wachtwoord;
+        return this.wachtwoord;
     }
 
     public List<Advertentie> getAdvertenties() {
-        return advertenties;
+
+        return this.advertenties;
+    }
+
+    public List<Advertentie> getWinkelwagen() {
+        return this.winkelwagen;
     }
 
     public void nieuweAdvertentie(String titel, String omschrijving, Gebruiker gebruiker, BigDecimal prijs) {
 
         Advertentie a = new Advertentie(titel, omschrijving, gebruiker, prijs, AdvertentieStatus.BESCHIKBAAR);
         this.advertenties.add(a);
-
     }
 
-    public void voegBestaandeAdvertentieToe(Advertentie a){
+    public void voegBestaandeAdvertentieToe(Advertentie a) {
         this.advertenties.add(a);
     }
 
+    public void voegBestaandeAdvertentieToeAanWinkelwagen(Advertentie a) {
+        this.winkelwagen.add(a);
+        a.setKoper(this);
+    }
+
+    public void verwijderBestaandeAdvertentieUitWinkelwagen(Advertentie a) {
+        this.winkelwagen.remove(a);
+        a.setKoper(null);
+    }
 
 }

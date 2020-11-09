@@ -1,4 +1,4 @@
-package org.example;
+package org.example.menus;
 
 import org.example.domain.Advertentie;
 import org.example.domain.Gebruiker;
@@ -27,8 +27,7 @@ public class VerwijderenAdvertentie {
 
             switch (readLine()) {
                 case "1":
-//                    Advertentie verwijderAdvertentieZeker = adDao.get(idLong);
-                    adDao.delete(verwijderAdvertentie);
+                    adDao.updateStatusVerwijderd(idLong);
                     gebDao.update(ingelogdeGebruiker);
                     return;
                 case "2":

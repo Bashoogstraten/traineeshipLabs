@@ -2,5 +2,5 @@ package org.example.util;
 
 public enum AdvertentieStatus {
 
-    BESCHIKBAAR, IN_WINKELMAND, VERKOCHT, VERWIJDERD;
+    BESCHIKBAAR, IN_WINKELWAGEN, VERKOCHT, VERWIJDERD;
 }

@@ -1,5 +1,6 @@
 package org.example.util;
 
+import org.example.domain.Advertentie;
 import org.example.domain.Gebruiker;
 
 import javax.persistence.EntityManager;
@@ -20,25 +21,6 @@ public class GebruikerDao {
         em.getTransaction().commit();
     }
 
-    public void saveAndDetach(Gebruiker e) {
-        em.getTransaction().begin();
-        em.persist(e);
-        em.detach(e);
-        em.getTransaction().commit();
-    }
-
-    private void detach() {
-        em.flush();
-        em.clear();
-    }
-
-    public void delete(long id) {
-        em.getTransaction().begin();
-        Gebruiker e = get(id);
-        em.remove(e);
-        em.getTransaction().commit();
-    }
-
     public Gebruiker update(Gebruiker e) {
         em.getTransaction().begin();
         Gebruiker merged = em.merge(e);
@@ -50,12 +32,6 @@ public class GebruikerDao {
         return em.find(Gebruiker.class, id);
     }
 
-    public Gebruiker getMetGebruiker(Gebruiker e) {
-
-        long id = e.getId();
-        return em.find(Gebruiker.class, id);
-    }
-
     public Gebruiker getMetGebruikersnaam(String username) {
         TypedQuery<Gebruiker> query = em.createQuery("SELECT e FROM Gebruiker e WHERE e.gebruikersnaam = :un", Gebruiker.class);
         query.setParameter("un", username);
@@ -63,8 +39,17 @@ public class GebruikerDao {
 
     }
 
-    public List<Gebruiker> findAll() {
-        TypedQuery<Gebruiker> query = em.createQuery("SELECT e FROM Gebruiker e ", Gebruiker.class);
-        return query.getResultList();
+    public void voegToeAanWinkelwagen(Advertentie a, Gebruiker koper) {
+        Gebruiker aanbieder = a.getAanbieder();
+        koper.voegBestaandeAdvertentieToeAanWinkelwagen(a);
+        update(aanbieder);
+        update(koper);
+    }
+
+    public void verwijderUitWinkelwagen(Advertentie a, Gebruiker koper) {
+        Gebruiker aanbieder = a.getAanbieder();
+        koper.verwijderBestaandeAdvertentieUitWinkelwagen(a);
+        update(aanbieder);
+        update(koper);
     }
 }
