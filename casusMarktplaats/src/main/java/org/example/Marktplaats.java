@@ -17,18 +17,14 @@ public class Marktplaats {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-
-        new Voorprogrammeren().start();
+        Voorprogrammeren.start(em);
         new InlogMenu().start();
-
     }
 
     public static String readLine() {
         return scanner.nextLine();
     }
+
     public static long readLong() { return scanner.nextLong(); }
 
-//    private void log(Object o) {
-//        log.debug(o.toString());
-//    }
 }
